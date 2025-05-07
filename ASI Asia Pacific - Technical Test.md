@@ -53,39 +53,41 @@
 
 * Untuk soal nomer 6 hingga 8, perhatikan kode berikut:
 
-	class UserController extends Controller {
+	[
+		class UserController extends Controller {
 	
-	 public function index ( ) {
-	 
-		 $users = User::all();
-	
-		 return response() -> json($users);
-	 }
-	
-	 public function store (Request $request) {
-		 $validatedData = $request->validate([
-			 'name' => 'required|string|max:255',
-			 'email' => 'required|email|unique:users|max:255',
-			 'password' => 'required|string|min:6',
-		 ]);
-	
-		 $user
-			 = User::create($validatedData);
-	
-		 return response() -> json($user, 201);
-	 }
-	
-	
-	 public function show ($id) {
-		 $user
-			 = User::find($id);
-		 if ($user) {
-			 return response() -> json($user);
-		 } else {
-			 return response() -> json(['message' => 'User not found'], 404);
-		 }
-	 }
-	}
+			public function index ( ) {
+			
+				$users = User::all();
+			
+				return response() -> json($users);
+			}
+			
+			public function store (Request $request) {
+				$validatedData = $request->validate([
+					'name' => 'required|string|max:255',
+					'email' => 'required|email|unique:users|max:255',
+					'password' => 'required|string|min:6',
+				]);
+			
+				$user
+					= User::create($validatedData);
+			
+				return response() -> json($user, 201);
+			}
+			
+			
+			public function show ($id) {
+				$user
+					= User::find($id);
+				if ($user) {
+					return response() -> json($user);
+				} else {
+					return response() -> json(['message' => 'User not found'], 404);
+				}
+			}
+		}
+	]
 
 
 6. Apa yang dilakukan metode ***store*** pada kode diatas?
@@ -156,23 +158,25 @@
 
 * Untuk soal nomor 11, perhatikan potongan kode berikut:
 
-	import React, { useState } from 'react';
+	[
+		import React, { useState } from 'react';
 	
-	const Counter: React.FC = () => {
-	
-		const [count, setCount] = useState<number>(0);
+		const Counter: React.FC = () => {
 		
-		const increment = () => setCount(count + 1);
+			const [count, setCount] = useState<number>(0);
+			
+			const increment = () => setCount(count + 1);
+			
+			return (
+				<div>
+					<h1>Count: {count}</h1>
+					<button onClick={increment}>Increment</button>
+				</div>
+			);
+		};
 		
-		return (
-			<div>
-				<h1>Count: {count}</h1>
-				<button onClick={increment}>Increment</button>
-			</div>
-		);
-	};
-	
-	export default Counter;
+		export default Counter;
+	]
 
 
 11. Pada baris 4, Apa yang terjadi jika kita menghapus tipe number pada penggunaan ***useState***, menjadi *const [count, setCount] = useState(0);*
